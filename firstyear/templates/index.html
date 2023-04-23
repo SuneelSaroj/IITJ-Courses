@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>IITJ</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+            crossorigin="anonymous">
+    </head>
+
+    <body>
+        {% include 'navbar.html' %}
+        <br>
+        <div class="text-center">
+
+            <h2>First Year B.Tech. Courses Applicable from A.Y. 2019-20</h2>
+        </div>
+        <div class="accordion col-sm-7 offset-sm-2" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        <h5>
+
+                            Semester 1
+                        </h5>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        {% for i in sem1 %}
+                        <a href="#modal-{{ i.course_code }}"
+                            class="list-group-item list-group-item-action item-link"
+                            data-bs-toggle="modal"
+                            data-target="#modal-{{ i.course_code }}">{{i.title}}</a>
+                        <hr>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        <h5>
+                            Semester 2
+                        </h5>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        {% for j in sem2 %}
+                        <a href="#modal-{{ j.course_code }}"
+                            class="list-group-item list-group-item-action item-link"
+                            data-bs-toggle="modal"
+                            data-target="#modal-{{ j.course_code }}">{{j.title}}</a>
+                        <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="list-group px-5 align-items-center ">
+
+            {% for i in sem1 %}
+            <div class="modal fade my-20" id="modal-{{ i.course_code }}" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{i.title}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Title:</th>
+                                        <td>{{i.title}}</td>
+                                        <th scope="row">Course Code:</th>
+                                        <td>{{i.course_code}}</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th scope="row">Department:</th>
+                                        <td>{{i.department}}</td>
+                                        <th scope="row">LTP:</th>
+                                        <td>{{i.ltp}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Offered For:</th>
+                                        <td>{{i.offered_for}}</td>
+                                        <th scope="row">Type:</th>
+                                        <td>{{i.type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Prerequisite:</th>
+                                        <td>{{i.prerequisite}}</td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+
+                            <div>
+                                <div class="objectives">
+                                    <h5>Objectives</h5>
+
+                                    <ol type="1">
+                                        {% if i.objective1%}
+                                        <li>{{i.objective1}}</li>
+                                        {% endif%}
+                                        {% if i.objective2%}
+                                        <li>{{i.objective2}}</li>
+                                        {% endif%}
+
+                                        {% if i.objective3%}
+                                        <li>{{i.objective3}}</li>
+                                        {% endif%}
+                                    </ol>
+                                </div>
+                                <div class="learning-outcomes">
+                                    <h5>Learning outcomes</h5>
+                                    <ol type="1">
+                                        {% if i.learning_outcome1 %}
+                                        <li>{{i.learning_outcome1}}</li>
+                                        {% endif%}
+                                        {% if i.learning_outcome2 %}
+                                        <li>{{i.learning_outcome2}}</li>
+                                        {% endif%}
+                                        {% if i.learning_outcome3 %}
+                                        <li>{{i.learning_outcome3}}</li>
+                                        {% endif%}
+                                    </ol>
+                                </div>
+                                <div class="contents">
+                                    <h5>Contents</h5>
+                                    <ul>
+                                        {% if i.content1%}
+                                        <li>{{i.content1}}</li>
+                                        {% endif%}
+                                        {% if i.content2%}
+                                        <li>{{i.content2}}</li>
+                                        {% endif%}
+                                        {% if i.content3%}
+                                        <li>{{i.content3}}</li>
+                                        {% endif%}
+                                        {% if i.content4%}
+                                        <li>{{i.content4}}</li>
+                                        {% endif%}
+                                        {% if i.content5%}
+                                        <li>{{i.content5}}</li>
+                                        {% endif%}
+                                        {% if i.content6%}
+                                        <li>{{i.content6}}</li>
+                                        {% endif%}
+                                        {% if i.content7%}
+                                        <li>{{i.content7}}</li>
+                                        {% endif%}
+                                        {% if i.content8%}
+                                        <li>{{i.content8}}</li>
+                                        {% endif%}
+
+                                    </ul>
+                                </div>
+                                <div class="reference-books">
+                                    <h5>Reference books</h5>
+                                    <ol type="1">
+                                        {% if i.reference_book1%}
+                                        <li>{{i.reference_book1}}</li>
+                                        {% endif%}
+                                        {% if i.reference_book2%}
+                                        <li>{{i.reference_book2}}</li>
+                                        {% endif%}
+                                        {% if i.reference_book3%}
+                                        <li>{{i.reference_book3}}</li>
+                                        {% endif%}
+                                        {% if i.reference_book4%}
+                                        <li>{{i.reference_book4}}</li>
+                                        {% endif%}
+
+                                    </ol>
+                                </div>
+                                <div class="self-learnings">
+                                    <h5>Self learning books</h5>
+                                    <ol type="1">
+                                        {% if i.self_mearning_material1%}
+                                        <li>{{i.self_mearning_material1}}</li>
+                                        {% endif%}
+                                        {% if i.self_mearning_material2%}
+                                        <li>{{i.self_mearning_material2}}</li>
+                                        {% endif%}
+                                        {% if i.self_mearning_material3%}
+                                        <li>{{i.self_mearning_material3}}</li>
+                                        {% endif%}
+                                    </ol>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+            {% for j in sem2 %}
+            <div class="modal fade my-20" id="modal-{{ j.course_code }}" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{j.title}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Title:</th>
+                                        <td>{{j.title}}</td>
+                                        <th scope="row">Course Code:</th>
+                                        <td>{{j.course_code}}</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th scope="row">Department:</th>
+                                        <td>{{j.department}}</td>
+                                        <th scope="row">LTP:</th>
+                                        <td>{{j.ltp}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Offered For:</th>
+                                        <td>{{j.offered_for}}</td>
+                                        <th scope="row">Type:</th>
+                                        <td>{{j.type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Prerequisite:</th>
+                                        <td>{{j.prerequisite}}</td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+
+                            <div>
+                                <div class="objectives">
+                                    <h5>Objectives</h5>
+
+                                    <ol type="1">
+                                        {% if j.objective1%}
+                                        <li>{{j.objective1}}</li>
+                                        {% endif%}
+                                        {% if j.objective2%}
+                                        <li>{{j.objective2}}</li>
+                                        {% endif%}
+
+                                        {% if j.objective3%}
+                                        <li>{{j.objective3}}</li>
+                                        {% endif%}
+                                    </ol>
+                                </div>
+                                <div class="learning-outcomes">
+                                    <h5>Learning outcomes</h5>
+                                    <ol type="1">
+                                        {% if j.learning_outcome1 %}
+                                        <li>{{j.learning_outcome1}}</li>
+                                        {% endif%}
+                                        {% if j.learning_outcome2 %}
+                                        <li>{{j.learning_outcome2}}</li>
+                                        {% endif%}
+                                        {% if j.learning_outcome3 %}
+                                        <li>{{j.learning_outcome3}}</li>
+                                        {% endif%}
+                                    </ol>
+                                </div>
+                                <div class="contents">
+                                    <h5>Contents</h5>
+                                    <ul>
+                                        {% if j.content1%}
+                                        <li>{{j.content1}}</li>
+                                        {% endif%}
+                                        {% if j.content2%}
+                                        <li>{{j.content2}}</li>
+                                        {% endif%}
+                                        {% if j.content3%}
+                                        <li>{{j.content3}}</li>
+                                        {% endif%}
+                                        {% if j.content4%}
+                                        <li>{{j.content4}}</li>
+                                        {% endif%}
+                                        {% if j.content5%}
+                                        <li>{{j.content5}}</li>
+                                        {% endif%}
+                                        {% if j.content6%}
+                                        <li>{{j.content6}}</li>
+                                        {% endif%}
+                                        {% if j.content7%}
+                                        <li>{{j.content7}}</li>
+                                        {% endif%}
+                                        {% if j.content8%}
+                                        <li>{{j.content8}}</li>
+                                        {% endif%}
+
+                                    </ul>
+                                </div>
+                                <div class="reference-books">
+                                    <h5>Reference books</h5>
+                                    <ol type="1">
+                                        {% if j.reference_book1%}
+                                        <li>{{j.reference_book1}}</li>
+                                        {% endif%}
+                                        {% if j.reference_book2%}
+                                        <li>{{j.reference_book2}}</li>
+                                        {% endif%}
+                                        {% if j.reference_book3%}
+                                        <li>{{j.reference_book3}}</li>
+                                        {% endif%}
+                                        {% if j.reference_book4%}
+                                        <li>{{j.reference_book4}}</li>
+                                        {% endif%}
+
+                                    </ol>
+                                </div>
+                                <div class="self-learnings">
+                                    <h5>Self learning books</h5>
+                                    <ol type="1">
+                                        {% if j.self_mearning_material1%}
+                                        <li>{{j.self_mearning_material1}}</li>
+                                        {% endif%}
+                                        {% if j.self_mearning_material2%}
+                                        <li>{{j.self_mearning_material2}}</li>
+                                        {% endif%}
+                                        {% if j.self_mearning_material3%}
+                                        <li>{{j.self_mearning_material3}}</li>
+                                        {% endif%}
+                                    </ol>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>
